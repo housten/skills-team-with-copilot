@@ -9,6 +9,7 @@ A super simple website application that allows students to view and sign up for 
   - Category (Sports, Arts, Academic, Community, Technology)
   - Day of the week
   - Time (Before School, After School, Weekend)
+  - Difficulty level (Beginner, Intermediate, Advanced)
 - Search for specific activities
 - Teacher authentication system
 - Register students for activities (teacher only)
@@ -28,7 +29,7 @@ For detailed setup and development instructions, please refer to our [Developmen
 ## API Endpoints
 
 The website utilizes the following key endpoints:
-- GET `/activities` - Retrieve all activities
+- GET `/activities` - Retrieve all activities (supports filters for category, day, time, and difficulty)
 - POST `/activities/{activity_name}/signup` - Register a student for an activity
 - POST `/auth/login` - Authenticate teachers
 - GET `/auth/check-session` - Validate teacher session
