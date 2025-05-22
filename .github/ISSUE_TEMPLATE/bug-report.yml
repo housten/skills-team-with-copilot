@@ -1,0 +1,88 @@
+name: Bug Report
+description: Report an issue with the activities management system
+title: "[BUG]: "
+labels: ["bug"]
+assignees:
+  - copilot
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Report a Bug
+        Please use this form to report any problems you encounter with the system.
+        
+  - type: dropdown
+    id: issue-area
+    attributes:
+      label: Problem Area
+      description: Which part of the system has the issue?
+      options:
+        - Student Registration
+        - Activity Details
+        - Teacher Login
+        - Activity Filters
+        - Website Display/Interface
+        - Other (please explain)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: Describe what happens when you encounter this issue
+      placeholder: "When trying to register a student, the system shows an error message."
+    validations:
+      required: true
+      
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: Describe what you expected to happen
+      placeholder: "The student should be added to the activity and I should see a confirmation message."
+    validations:
+      required: true
+      
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the issue
+      placeholder: |
+        1. Log in as a teacher
+        2. Click on "Chess Club"
+        3. Click "Register Student"
+        4. Enter email address
+        5. Click submit
+        6. Error message appears
+    validations:
+      required: true
+      
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages
+      description: Copy and paste any error messages you see (if applicable)
+      placeholder: "Error: Failed to update activity"
+    validations:
+      required: false
+      
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser were you using? (Chrome, Firefox, Safari, etc.)
+      placeholder: "Chrome 96.0"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help solve the issue
+      placeholder: "This only happens with certain activities or at specific times..."
+    validations:
+      required: false
