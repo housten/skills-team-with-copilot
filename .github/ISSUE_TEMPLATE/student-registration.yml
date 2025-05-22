@@ -1,0 +1,77 @@
+name: Student Registration Management
+description: Add or remove multiple students from activities
+title: "[REGISTRATION]: "
+labels: ["registration", "students"]
+assignees:
+  - copilot
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Manage Student Registrations
+        Use this form to request adding or removing multiple students from an activity.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Activity Name
+      description: The name of the activity you want to update registrations for
+      placeholder: "Drama Club"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: action-type
+    attributes:
+      label: Action Type
+      description: What do you want to do?
+      options:
+        - Add students to this activity
+        - Remove students from this activity
+        - Both add and remove students
+    validations:
+      required: true
+      
+  - type: textarea
+    id: students-to-add
+    attributes:
+      label: Students to Add
+      description: List the email addresses of students to add (one per line)
+      placeholder: |
+        john@mergington.edu
+        maria@mergington.edu
+        alex@mergington.edu
+    validations:
+      required: false
+      
+  - type: textarea
+    id: students-to-remove
+    attributes:
+      label: Students to Remove
+      description: List the email addresses of students to remove (one per line)
+      placeholder: |
+        sarah@mergington.edu
+        jamie@mergington.edu
+    validations:
+      required: false
+      
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for Changes
+      description: Briefly explain why these registration changes are needed
+      placeholder: "Students are switching between activities based on schedule conflicts."
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have confirmed these changes with the students and/or parents
+          required: true
+        - label: I have checked that adding these students won't exceed the maximum capacity
+          required: true

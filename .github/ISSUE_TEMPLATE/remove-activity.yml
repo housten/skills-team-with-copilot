@@ -1,0 +1,65 @@
+name: Remove Activity
+description: Request to remove an extracurricular activity from the system
+title: "[REMOVE]: "
+labels: ["removal", "activity"]
+assignees:
+  - copilot
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Remove an Activity
+        Use this form to request removal of an activity from the system.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Activity Name
+      description: The name of the activity you want to remove
+      placeholder: "French Club"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: removal-reason
+    attributes:
+      label: Reason for Removal
+      description: Why is this activity being removed?
+      options:
+        - No longer offered
+        - Being replaced by a new activity
+        - Temporary pause (will be reinstated later)
+        - Duplicate of another activity
+        - Other (please explain)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional-explanation
+    attributes:
+      label: Additional Explanation
+      description: Please provide more details about why this activity is being removed
+      placeholder: "The French teacher is retiring and we don't have a replacement yet."
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have notified any students currently registered for this activity
+          required: true
+        - label: I understand that removing this activity will delete all associated data
+          required: true
+          
+  - type: textarea
+    id: student-transition
+    attributes:
+      label: Student Transition Plan
+      description: If applicable, explain what current participants should do
+      placeholder: "Students will be encouraged to join the Spanish Club as an alternative."
+    validations:
+      required: false

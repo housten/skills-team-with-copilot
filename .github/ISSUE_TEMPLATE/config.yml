@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Activity Management Help
+    url: https://mergington.edu/support
+    about: Get help with using the activity management system
+  - name: Teacher Resources
+    url: https://mergington.edu/teachers
+    about: Access teacher-specific resources and documentation

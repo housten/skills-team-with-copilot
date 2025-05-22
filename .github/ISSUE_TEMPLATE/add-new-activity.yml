@@ -1,0 +1,99 @@
+name: Add New Activity
+description: Request to add a new extracurricular activity to the system
+title: "[NEW ACTIVITY]: "
+labels: ["enhancement", "activity"]
+assignees:
+  - copilot
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Adding a New Activity
+        Please complete this form to request a new extracurricular activity in the system.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Activity Name
+      description: The name of the new activity (e.g., "Chess Club", "Debate Team")
+      placeholder: "Spanish Club"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: activity-description
+    attributes:
+      label: Activity Description
+      description: Brief description of what students will do in this activity
+      placeholder: "Students will practice conversational Spanish and learn about Hispanic cultures through interactive activities."
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: activity-days
+    attributes:
+      label: Meeting Days
+      description: Select the day(s) when this activity will be held
+      multiple: true
+      options:
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+        - Friday
+        - Saturday
+        - Sunday
+    validations:
+      required: true
+      
+  - type: input
+    id: start-time
+    attributes:
+      label: Start Time
+      description: When the activity starts (e.g., "15:30" for 3:30 PM)
+      placeholder: "15:30"
+    validations:
+      required: true
+      
+  - type: input
+    id: end-time
+    attributes:
+      label: End Time
+      description: When the activity ends (e.g., "17:00" for 5:00 PM)
+      placeholder: "17:00"
+    validations:
+      required: true
+      
+  - type: input
+    id: max-participants
+    attributes:
+      label: Maximum Participants
+      description: The maximum number of students who can participate
+      placeholder: "15"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: activity-category
+    attributes:
+      label: Activity Category
+      description: Select the category that best describes this activity
+      options:
+        - Academic
+        - Arts
+        - Sports
+        - Technology
+        - Community Service
+        - Other
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other details about the activity (location, materials needed, etc.)
+      placeholder: "Activity will be held in Room 204. Students need to bring notebooks."
+    validations:
+      required: false
