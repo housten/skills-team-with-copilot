@@ -16,11 +16,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Build site (adjust for your generator)
-        run: |
-          # Example for Jekyll
-          bundle install
-          bundle exec jekyll build -d _site
 
       - name: Prepare static site
         run: |
