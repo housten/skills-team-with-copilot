@@ -22,11 +22,16 @@ jobs:
           bundle install
           bundle exec jekyll build -d _site
 
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp -r src/static/* _site/
+
       - name: Deploy to gh-pages subpath
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           destination_dir: previews/${{ github.head_ref || github.ref_name }}
-          keep_files: true  # keeps the main site and other previews
+          keep_files: true
           publish_branch: gh-pages
