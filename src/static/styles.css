@@ -47,7 +47,7 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.1;
+  opacity: 0.15;
   pointer-events: none;
 }
 
@@ -61,16 +61,21 @@
   height: 100%;
   background-image: 
     linear-gradient(90deg, transparent 99%, var(--primary-dark) 99.5%, transparent 100%),
-    linear-gradient(to bottom, transparent 98%, var(--primary-dark) 98.5%, transparent 100%);
-  background-size: 20px 30px;
+    linear-gradient(to bottom, transparent 98%, var(--primary-dark) 98.5%, transparent 100%),
+    radial-gradient(circle at 20% 30%, var(--primary-dark) 2px, transparent 3px),
+    radial-gradient(circle at 60% 70%, var(--primary-dark) 2px, transparent 3px),
+    radial-gradient(circle at 40% 80%, var(--primary-dark) 2px, transparent 3px);
+  background-size: 20px 30px, 20px 30px, 100px 100px, 150px 150px, 200px 200px;
   animation: branchMove 60s infinite linear;
 }
 
 .git-branches-background::after {
   background-image: 
     linear-gradient(45deg, transparent 99%, var(--primary) 99.5%, transparent 100%),
-    linear-gradient(135deg, transparent 99%, var(--primary-light) 99.5%, transparent 100%);
-  background-size: 50px 50px;
+    linear-gradient(135deg, transparent 99%, var(--primary-light) 99.5%, transparent 100%),
+    radial-gradient(circle at 80% 10%, var(--primary) 2px, transparent 3px),
+    radial-gradient(circle at 30% 50%, var(--primary-light) 2px, transparent 3px);
+  background-size: 50px 50px, 50px 50px, 120px 120px, 180px 180px;
   animation: branchMove 40s infinite linear reverse;
   opacity: 0.7;
 }
@@ -341,6 +346,8 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* Tooltip styles */
@@ -609,6 +616,8 @@ footer {
   background-color: var(--primary);
   color: white;
   border-color: var(--primary-dark);
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .category-filter:hover,
@@ -717,17 +726,22 @@ footer {
   gap: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .mascot {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  object-fit: cover;
 }
 
 .mascot:hover {
-  transform: scale(1.2);
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  border-color: var(--primary-light);
 }
