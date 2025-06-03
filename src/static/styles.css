@@ -645,6 +645,18 @@ footer {
   .sidebar-filters {
     width: 100%;
   }
+
+  /* Responsive theme toggle */
+  #user-controls {
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #theme-toggle span:last-child {
+    display: none;
+  }
 }
 
 /* User controls in header */
