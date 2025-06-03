@@ -539,7 +539,8 @@ footer {
 
 .category-filters,
 .day-filters,
-.time-filters {
+.time-filters,
+.group-by-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -547,7 +548,8 @@ footer {
 
 .category-filter,
 .day-filter,
-.time-filter {
+.time-filter,
+.group-by-toggle {
   background-color: var(--background);
   border: 1px solid var(--border);
   color: var(--text-primary);
@@ -560,7 +562,8 @@ footer {
 
 .category-filter.active,
 .day-filter.active,
-.time-filter.active {
+.time-filter.active,
+.group-by-toggle.active {
   background-color: var(--primary);
   color: white;
   border-color: var(--primary-dark);
@@ -568,13 +571,42 @@ footer {
 
 .category-filter:hover,
 .day-filter:hover,
-.time-filter:hover {
+.time-filter:hover,
+.group-by-toggle:hover {
   background-color: var(--primary-light);
   color: white;
 }
 
 .time-filters {
   width: 100%;
+}
+
+/* Group header styles */
+.group-header {
+  background-color: var(--primary);
+  color: var(--primary-text);
+  padding: 10px 15px;
+  margin: 15px 0 10px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-header:first-child {
+  margin-top: 0;
+}
+
+.group-count {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: normal;
 }
 
 .reset-button {

@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dayFilters = document.querySelectorAll(".day-filter");
   const timeFilters = document.querySelectorAll(".time-filter");
   const difficultyFilters = document.querySelectorAll(".difficulty-filter");
+  const groupByToggles = document.querySelectorAll(".group-by-toggle");
 
   // Authentication elements
   const loginButton = document.getElementById("login-button");
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentDay = "";
   let currentTimeRange = "";
   let currentDifficulty = "";
+  let currentGroupBy = "list"; // 'list' or 'group'
 
   // Authentication state
   let currentUser = null;
@@ -496,8 +498,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Display filtered activities
+    if (currentGroupBy === "group") {
+      displayGroupedActivities(filteredActivities);
+    } else {
+      Object.entries(filteredActivities).forEach(([name, details]) => {
+        renderActivityCard(name, details);
+      });
+    }
+  }
+
+  // Function to display activities grouped by category
+  function displayGroupedActivities(filteredActivities) {
+    // Group activities by type
+    const groupedActivities = {};
+    
     Object.entries(filteredActivities).forEach(([name, details]) => {
-      renderActivityCard(name, details);
+      const activityType = getActivityType(name, details.description);
+      if (!groupedActivities[activityType]) {
+        groupedActivities[activityType] = [];
+      }
+      groupedActivities[activityType].push({ name, details });
+    });
+
+    // Sort groups by total available spots (descending)
+    const sortedGroups = Object.entries(groupedActivities).sort(([typeA, activitiesA], [typeB, activitiesB]) => {
+      const availableA = activitiesA.reduce((sum, { details }) => 
+        sum + (details.max_participants - details.participants.length), 0);
+      const availableB = activitiesB.reduce((sum, { details }) => 
+        sum + (details.max_participants - details.participants.length), 0);
+      return availableB - availableA; // Descending order
+    });
+
+    // Render each group
+    sortedGroups.forEach(([activityType, activities]) => {
+      // Create group header
+      const groupHeader = document.createElement("div");
+      groupHeader.className = "group-header";
+      
+      const typeInfo = activityTypes[activityType] || { label: activityType };
+      const totalAvailable = activities.reduce((sum, { details }) => 
+        sum + (details.max_participants - details.participants.length), 0);
+      
+      groupHeader.innerHTML = `
+        <span>${typeInfo.label}</span>
+        <span class="group-count">${activities.length} activities, ${totalAvailable} spots available</span>
+      `;
+      
+      activitiesList.appendChild(groupHeader);
+
+      // Sort activities within group by available spots (descending)
+      const sortedActivities = activities.sort((a, b) => {
+        const availableA = a.details.max_participants - a.details.participants.length;
+        const availableB = b.details.max_participants - b.details.participants.length;
+        return availableB - availableA;
+      });
+
+      // Render activities in this group
+      sortedActivities.forEach(({ name, details }) => {
+        renderActivityCard(name, details);
+      });
     });
   }
 
@@ -688,6 +747,19 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update current difficulty filter and fetch activities
       currentDifficulty = button.dataset.difficulty;
       fetchActivities();
+    });
+  });
+
+  // Add event listeners to group by toggle buttons
+  groupByToggles.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Update active class
+      groupByToggles.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Update current group by mode and display filtered activities
+      currentGroupBy = button.dataset.mode;
+      displayFilteredActivities();
     });
   });
 
