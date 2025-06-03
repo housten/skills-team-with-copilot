@@ -32,6 +32,40 @@
   --info-light: #d1ecf1;
 }
 
+/* Dark mode color palette */
+[data-theme="dark"] {
+  /* Primary colors - slightly lighter for better contrast on dark background */
+  --primary: #3f51b5;
+  --primary-light: #7986cb;
+  --primary-dark: #1a237e;
+  --primary-text: #ffffff;
+
+  /* Secondary colors */
+  --secondary: #ff9800;
+  --secondary-light: #ffb74d;
+  --secondary-dark: #f57c00;
+  --secondary-text: #000000;
+
+  /* Neutral colors - inverted for dark theme */
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border: #333333;
+  --border-light: #2a2a2a;
+  --border-focus: #404040;
+
+  /* Feedback colors - adjusted for dark background */
+  --success: #4caf50;
+  --success-light: #2e2e2e;
+  --warning: #ff9800;
+  --warning-light: #2e2e2e;
+  --error: #f44336;
+  --error-light: #2e2e2e;
+  --info: #2196f3;
+  --info-light: #2e2e2e;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -48,6 +82,7 @@ body {
   padding: 12px;
   background-color: var(--background);
   font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
@@ -610,6 +645,18 @@ footer {
   .sidebar-filters {
     width: 100%;
   }
+
+  /* Responsive theme toggle */
+  #user-controls {
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #theme-toggle span:last-child {
+    display: none;
+  }
 }
 
 /* User controls in header */
@@ -617,6 +664,9 @@ footer {
   position: absolute;
   top: 10px;
   right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #user-status {
@@ -663,4 +713,36 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] #theme-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] #theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-icon {
+  font-size: 1rem;
 }
