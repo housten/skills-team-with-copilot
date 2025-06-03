@@ -1,0 +1,32 @@
+name: Deploy Preview to GitHub Pages
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - '**' # all branches except gh-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/gh-pages'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp -r src/static/* _site/
+
+      - name: Deploy to gh-pages subpath
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          destination_dir: previews/${{ github.head_ref || github.ref_name }}
+          keep_files: true
+          publish_branch: housten-patch-1
